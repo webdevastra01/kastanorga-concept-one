@@ -377,49 +377,58 @@ export default function Hero({ lang = "en" }: HeroProps) {
   ========================== */}
             <div className="absolute inset-0 flex items-center justify-center -z-10">
               <motion.div
-                animate={{ scale: [1, 1.04, 1] }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
                 className="relative w-full aspect-square max-w-[760px]"
               >
-                <Image
-                  src="/globe.png"
-                  alt="Global translation network connecting English, French, and Dutch"
-                  fill
-                  sizes="(max-width: 640px) 420px,
+                <motion.div
+                  animate={{ scale: [1, 1.04, 1] }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="relative w-full aspect-square max-w-[760px]"
+                >
+                  <Image
+                    src="/globe.png"
+                    alt="Global translation network connecting English, French, and Dutch"
+                    fill
+                    sizes="(max-width: 640px) 420px,
                (max-width: 768px) 520px,
                (max-width: 1024px) 600px,
                (max-width: 1280px) 680px,
                760px"
-                  className="object-contain"
-                  priority
-                />
+                    className="object-contain"
+                    priority
+                  />
 
-                {/* Glow */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-[75%] h-[75%] rounded-full bg-[#023779]/5 blur-3xl" />
-                </div>
-                <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 0.6 }}
-              className="absolute bottom-[4%] left-1/2 -translate-x-1/2 flex gap-2"
-            >
-              {["English", "Français", "Nederlands"].map((langLabel, i) => (
-                <motion.span
-                  key={langLabel}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.4 + i * 0.1 }}
-                  className="px-3 py-1.5 text-xs font-medium bg-white/80 backdrop-blur-sm border border-neutral-200/60 rounded-full text-neutral-600 shadow-sm"
-                >
-                  {langLabel}
-                </motion.span>
-              ))}
-            </motion.div>
+                  {/* Glow */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="w-[75%] h-[75%] rounded-full bg-[#023779]/5 blur-3xl" />
+                  </div>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.2, duration: 0.6 }}
+                    className="absolute bottom-[4%] left-1/2 -translate-x-1/2 flex gap-2"
+                  >
+                    {["English", "Français", "Nederlands"].map(
+                      (langLabel, i) => (
+                        <motion.span
+                          key={langLabel}
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 1.4 + i * 0.1 }}
+                          className="px-3 py-1.5 text-xs font-medium bg-white/80 backdrop-blur-sm border border-neutral-200/60 rounded-full text-neutral-600 shadow-sm"
+                        >
+                          {langLabel}
+                        </motion.span>
+                      ),
+                    )}
+                  </motion.div>
+                </motion.div>
               </motion.div>
             </div>
 
@@ -490,7 +499,6 @@ export default function Hero({ lang = "en" }: HeroProps) {
             {/* =========================
       LANGUAGE PILLS LAYER
   ========================== */}
-            
           </div>
         </div>
       </motion.div>

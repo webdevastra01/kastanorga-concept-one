@@ -2,6 +2,7 @@ import Navbar from "../app/components/Header";
 import Hero from "../app/sections/Hero";
 import AboutSection from "../app/sections/AboutSection";
 import ServicesSection from "../app/sections/ServicesSection";
+import WhyKastanorgaSection from "./sections/WhyKastanorgaSection";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         <Hero />
         <AboutSection />
         <ServicesSection />
+        <WhyKastanorgaSection/>
       </main>
     </div>
   );
