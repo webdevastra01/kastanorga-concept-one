@@ -155,9 +155,6 @@ export default function PhilosophyBanner() {
           <div className="h-px w-16 bg-gradient-to-l from-transparent to-white/20" />
         </motion.div>
       </motion.div>
-
-      {/* Bottom gradient fade to next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#fafafa] to-transparent" />
     </section>
   );
 }

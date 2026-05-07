@@ -7,6 +7,7 @@ import ProcessSection from "./sections/ProcessSection";
 import LanguageExpertiseSection from "./sections/LanguageExpertiseSection";
 import TestimonialsSection from "./sections/TestimonialsSection";
 import PhilosophyBanner from "./sections/PhilosophyBanner";
+import FAQSection from "./sections/FAQSection";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
         <LanguageExpertiseSection />
         <TestimonialsSection />
         <PhilosophyBanner/>
+        <FAQSection />
       </main>
     </div>
   );
