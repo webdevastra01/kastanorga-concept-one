@@ -5,6 +5,7 @@ import ServicesSection from "../app/sections/ServicesSection";
 import WhyKastanorgaSection from "./sections/WhyKastanorgaSection";
 import ProcessSection from "./sections/ProcessSection";
 import LanguageExpertiseSection from "./sections/LanguageExpertiseSection";
+import TestimonialsSection from "./sections/TestimonialsSection";
 
 export default function Home() {
   return (
@@ -18,7 +19,8 @@ export default function Home() {
         <ServicesSection />
         <WhyKastanorgaSection />
         <ProcessSection />
-        <LanguageExpertiseSection/>
+        <LanguageExpertiseSection />
+        <TestimonialsSection />
       </main>
     </div>
   );
