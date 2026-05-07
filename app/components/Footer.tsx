@@ -52,7 +52,7 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className="relative w-full border-t border-slate-200 bg-white">
+    <div className="relative w-full border-t border-slate-200 bg-white">
 
       <div className="mx-auto max-w-7xl px-6 pt-16 pb-8 lg:px-8">
         <motion.div
@@ -211,6 +211,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </div>
   );
 }
