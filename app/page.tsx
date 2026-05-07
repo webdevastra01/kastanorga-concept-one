@@ -1,5 +1,6 @@
 import Navbar from "../app/components/Header";
 import Hero from "../app/sections/Hero";
+import AboutSection from "../app/sections/AboutSection";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       </header>
       <main>
         <Hero />
+        <AboutSection/>
       </main>
     </div>
   );
