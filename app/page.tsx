@@ -9,6 +9,7 @@ import TestimonialsSection from "./sections/TestimonialsSection";
 import PhilosophyBanner from "./sections/PhilosophyBanner";
 import FAQSection from "./sections/FAQSection";
 import FinalCTASection from "./sections/FinalCTASection";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -28,6 +29,9 @@ export default function Home() {
         <FAQSection />
         <FinalCTASection />
       </main>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }
