@@ -11,6 +11,12 @@ import {
   Shield,
   Sparkles,
   Zap,
+  CheckCircle2,
+  Clock,
+  Globe2,
+  MessageCircle,
+  ShieldCheck,
+  Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -20,8 +26,8 @@ interface HeroProps {
   lang?: "en" | "fr" | "nl";
 }
 
-// ─── Content Data ──────────────────────────────────────────────────
-const CONTENT = {
+// ─── Hero Content Data ─────────────────────────────────────────────
+const HERO_CONTENT = {
   en: {
     headline: "Clear Translation. Meaningful Connection.",
     subheadline:
@@ -46,6 +52,94 @@ const CONTENT = {
     ctaSecondary: "Consultatie Boeken",
     badge: "Vertrouwd door professionals in heel Europa",
   },
+};
+
+// ─── Trust Strip Content Data ──────────────────────────────────────
+const TRUST_CONTENT = {
+  en: [
+    {
+      icon: Globe2,
+      label: "English ↔ French ↔ Dutch",
+      sublabel: "Three languages, seamless switching",
+    },
+    {
+      icon: CheckCircle2,
+      label: "Accurate Communication",
+      sublabel: "Precision in every word",
+    },
+    {
+      icon: ShieldCheck,
+      label: "Professional Translation",
+      sublabel: "Certified & experienced",
+    },
+    {
+      icon: MessageCircle,
+      label: "Cross-Cultural Understanding",
+      sublabel: "Context beyond words",
+    },
+    { icon: Clock, label: "48h Response Time", sublabel: "Fast & reliable" },
+    {
+      icon: Users,
+      label: "Confidential & Secure",
+      sublabel: "Your data stays private",
+    },
+  ],
+  fr: [
+    {
+      icon: Globe2,
+      label: "Anglais ↔ Français ↔ Néerlandais",
+      sublabel: "Trois langues, basculement fluide",
+    },
+    {
+      icon: CheckCircle2,
+      label: "Communication Précise",
+      sublabel: "Précision dans chaque mot",
+    },
+    {
+      icon: ShieldCheck,
+      label: "Traduction Professionnelle",
+      sublabel: "Certifiée & expérimentée",
+    },
+    {
+      icon: MessageCircle,
+      label: "Compréhension Interculturelle",
+      sublabel: "Contexte au-delà des mots",
+    },
+    { icon: Clock, label: "Délai de 48h", sublabel: "Rapide & fiable" },
+    {
+      icon: Users,
+      label: "Confidentiel & Sécurisé",
+      sublabel: "Vos données restent privées",
+    },
+  ],
+  nl: [
+    {
+      icon: Globe2,
+      label: "Engels ↔ Frans ↔ Nederlands",
+      sublabel: "Drie talen, naadloze overstap",
+    },
+    {
+      icon: CheckCircle2,
+      label: "Nauwkeurige Communicatie",
+      sublabel: "Precisie in elk woord",
+    },
+    {
+      icon: ShieldCheck,
+      label: "Professionele Vertaling",
+      sublabel: "Gecertificeerd & ervaren",
+    },
+    {
+      icon: MessageCircle,
+      label: "Cross-Cultureel Inzicht",
+      sublabel: "Context voorbij woorden",
+    },
+    { icon: Clock, label: "48u Reactietijd", sublabel: "Snel & betrouwbaar" },
+    {
+      icon: Users,
+      label: "Vertrouwelijk & Veilig",
+      sublabel: "Uw gegevens blijven privé",
+    },
+  ],
 };
 
 // ─── Floating Card Data ────────────────────────────────────────────
@@ -90,7 +184,8 @@ const FLOATING_CARDS = [
 
 // ─── Component ─────────────────────────────────────────────────────
 export default function Hero({ lang = "en" }: HeroProps) {
-  const content = CONTENT[lang];
+  const content = HERO_CONTENT[lang];
+  const trustItems = TRUST_CONTENT[lang];
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -101,7 +196,6 @@ export default function Hero({ lang = "en" }: HeroProps) {
   const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  // Smooth scroll handler
   const handleScroll = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string,
@@ -113,11 +207,28 @@ export default function Hero({ lang = "en" }: HeroProps) {
     }
   };
 
+  const trustContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+    },
+  };
+
+  const trustItemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
   return (
     <section
       id="hero"
       ref={containerRef}
-      className="relative min-h-screen flex items-center overflow-hidden bg-white"
+      className="relative min-h-screen flex flex-col overflow-hidden bg-white -mt-20"
     >
       {/* ─── Background Grid Pattern ────────────────────────────── */}
       <div className="absolute inset-0 z-0">
@@ -135,18 +246,12 @@ export default function Hero({ lang = "en" }: HeroProps) {
 
       {/* ─── Abstract Gradient Orbs ─────────────────────────────── */}
       <motion.div
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.4, 0.6, 0.4],
-        }}
+        animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.6, 0.4] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-20 right-20 w-[500px] h-[500px] rounded-full bg-[#023779]/5 blur-3xl"
       />
       <motion.div
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
+        animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.5, 0.3] }}
         transition={{
           duration: 10,
           repeat: Infinity,
@@ -159,9 +264,9 @@ export default function Hero({ lang = "en" }: HeroProps) {
       {/* ─── Main Content ───────────────────────────────────────── */}
       <motion.div
         style={{ y, opacity }}
-        className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full"
+        className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full flex-1"
       >
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-4 items-center min-h-[calc(100vh-5rem)] pt-24 pb-16">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-4 items-center min-h-[calc(100vh-5rem)] pt-24 pb-8">
           {/* ─── Left Column: Copy ──────────────────────────────── */}
           <div className="flex flex-col justify-center order-2 lg:order-1">
             {/* Badge */}
@@ -238,14 +343,7 @@ export default function Hero({ lang = "en" }: HeroProps) {
             >
               <Button
                 size="lg"
-                className="
-                  group text-base font-semibold
-                  bg-[#023779] hover:bg-[#023779]/90
-                  text-white shadow-lg shadow-[#023779]/20
-                  transition-all duration-300
-                  hover:shadow-xl hover:shadow-[#023779]/25 hover:-translate-y-0.5
-                  px-8 py-6 h-auto
-                "
+                className="group text-base font-semibold bg-[#023779] hover:bg-[#023779]/90 text-white shadow-lg shadow-[#023779]/20 transition-all duration-300 hover:shadow-xl hover:shadow-[#023779]/25 hover:-translate-y-0.5 px-8 py-6 h-auto"
                 asChild
               >
                 <a href="#cta" onClick={(e) => handleScroll(e, "#cta")}>
@@ -261,15 +359,7 @@ export default function Hero({ lang = "en" }: HeroProps) {
               <Button
                 size="lg"
                 variant="outline"
-                className="
-                  group text-base font-semibold
-                  border-neutral-200 hover:border-neutral-300
-                  text-neutral-700 hover:text-neutral-900
-                  bg-white hover:bg-neutral-50
-                  transition-all duration-300
-                  hover:-translate-y-0.5
-                  px-8 py-6 h-auto
-                "
+                className="group text-base font-semibold border-neutral-200 hover:border-neutral-300 text-neutral-700 hover:text-neutral-900 bg-white hover:bg-neutral-50 transition-all duration-300 hover:-translate-y-0.5 px-8 py-6 h-auto"
                 asChild
               >
                 <a href="#contact" onClick={(e) => handleScroll(e, "#contact")}>
@@ -282,7 +372,6 @@ export default function Hero({ lang = "en" }: HeroProps) {
 
           {/* ─── Right Column: Visual ───────────────────────────── */}
           <div className="relative flex items-center justify-center lg:justify-end order-1 lg:order-2">
-            {/* Main Globe Image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -298,8 +387,6 @@ export default function Hero({ lang = "en" }: HeroProps) {
                   priority
                 />
               </div>
-
-              {/* Glow behind globe */}
               <div className="absolute inset-0 -z-10 flex items-center justify-center">
                 <div className="w-[75%] h-[75%] rounded-full bg-[#023779]/5 blur-3xl" />
               </div>
@@ -317,12 +404,7 @@ export default function Hero({ lang = "en" }: HeroProps) {
                     x: card.x * 0.5,
                     y: card.y * 0.5,
                   }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                    x: card.x,
-                    y: card.y,
-                  }}
+                  animate={{ opacity: 1, scale: 1, x: card.x, y: card.y }}
                   transition={{
                     duration: 0.8,
                     delay: 0.6 + card.delay,
@@ -332,23 +414,14 @@ export default function Hero({ lang = "en" }: HeroProps) {
                   style={{ left: "50%", top: "50%" }}
                 >
                   <motion.div
-                    animate={{
-                      y: [0, -8, 0],
-                    }}
+                    animate={{ y: [0, -8, 0] }}
                     transition={{
                       duration: 4 + index * 0.5,
                       repeat: Infinity,
                       ease: "easeInOut",
                       delay: index * 0.3,
                     }}
-                    className="
-                      flex items-center gap-3 px-4 py-3
-                      bg-white rounded-xl
-                      border border-neutral-100
-                      shadow-lg shadow-neutral-900/5
-                      hover:shadow-xl hover:shadow-neutral-900/10
-                      transition-shadow duration-300
-                    "
+                    className="flex items-center gap-3 px-4 py-3 bg-white rounded-xl border border-neutral-100 shadow-lg shadow-neutral-900/5 hover:shadow-xl hover:shadow-neutral-900/10 transition-shadow duration-300"
                   >
                     <div
                       className="flex items-center justify-center w-9 h-9 rounded-lg"
@@ -373,7 +446,7 @@ export default function Hero({ lang = "en" }: HeroProps) {
               );
             })}
 
-            {/* Language Pills (decorative) */}
+            {/* Language Pills */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -386,13 +459,7 @@ export default function Hero({ lang = "en" }: HeroProps) {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.4 + i * 0.1 }}
-                  className="
-                    px-3 py-1.5 text-xs font-medium
-                    bg-white/80 backdrop-blur-sm
-                    border border-neutral-200/60
-                    rounded-full text-neutral-600
-                    shadow-sm
-                  "
+                  className="px-3 py-1.5 text-xs font-medium bg-white/80 backdrop-blur-sm border border-neutral-200/60 rounded-full text-neutral-600 shadow-sm"
                 >
                   {langLabel}
                 </motion.span>
@@ -402,8 +469,49 @@ export default function Hero({ lang = "en" }: HeroProps) {
         </div>
       </motion.div>
 
+      {/* ─── Trust / Credibility Strip ──────────────────────────── */}
+      <div className="relative z-10 w-full bg-white border-y border-neutral-100">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#023779]/20 to-transparent" />
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            variants={trustContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6"
+          >
+            {trustItems.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={index}
+                  variants={trustItemVariants}
+                  className="group relative flex flex-col items-center text-center py-6 px-3 sm:px-4 transition-colors duration-300 hover:bg-neutral-50/50 border-r border-b border-neutral-100 last:border-r-0 md:[&:nth-child(3)]:border-r-0 lg:[&:nth-child(3)]:border-r lg:[&:nth-child(n+4)]:border-b-0"
+                >
+                  <div className="flex items-center justify-center w-9 h-9 mb-2.5 rounded-lg bg-[#023779]/5 group-hover:bg-[#023779]/10 transition-colors duration-300">
+                    <Icon
+                      className="w-4.5 h-4.5 text-[#023779]"
+                      strokeWidth={1.5}
+                    />
+                  </div>
+                  <p className="text-xs sm:text-sm font-semibold text-neutral-900 leading-tight">
+                    {item.label}
+                  </p>
+                  <p className="mt-0.5 text-[11px] text-neutral-400 leading-tight">
+                    {item.sublabel}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#023779]/20 to-transparent" />
+      </div>
+
       {/* ─── Bottom Fade ────────────────────────────────────────── */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
     </section>
   );
 }
