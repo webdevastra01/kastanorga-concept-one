@@ -8,6 +8,7 @@ import LanguageExpertiseSection from "./sections/LanguageExpertiseSection";
 import TestimonialsSection from "./sections/TestimonialsSection";
 import PhilosophyBanner from "./sections/PhilosophyBanner";
 import FAQSection from "./sections/FAQSection";
+import FinalCTASection from "./sections/FinalCTASection";
 
 export default function Home() {
   return (
@@ -23,8 +24,9 @@ export default function Home() {
         <ProcessSection />
         <LanguageExpertiseSection />
         <TestimonialsSection />
-        <PhilosophyBanner/>
+        <PhilosophyBanner />
         <FAQSection />
+        <FinalCTASection />
       </main>
     </div>
   );
