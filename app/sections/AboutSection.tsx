@@ -55,18 +55,10 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative w-full overflow-hidden bg-[#fafafa] py-24 md:py-32 lg:py-40"
+      className="relative w-full overflow-hidden bg-white py-24 md:py-32 lg:py-40"
     >
-      {/* Subtle grid background pattern */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div
-          className="h-full w-full"
-          style={{
-            backgroundImage: `linear-gradient(#023779 1px, transparent 1px), linear-gradient(90deg, #023779 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
+      {/* Top subtle divider line */}
+      <div className="absolute left-1/2 top-0 h-px w-32 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#023779]/20 to-transparent" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-24">

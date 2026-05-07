@@ -371,92 +371,47 @@ export default function Hero({ lang = "en" }: HeroProps) {
           </div>
 
           {/* ─── Right Column: Visual ───────────────────────────── */}
-          <div className="relative flex items-center justify-center lg:justify-end order-1 lg:order-2">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-full"
-            >
-              <div className="relative w-full aspect-square max-w-[420px] sm:max-w-[520px] md:max-w-[600px] lg:max-w-[680px] xl:max-w-[760px] mx-auto lg:mx-0 lg:ml-auto">
+          <div className="relative isolate flex items-center justify-center lg:justify-end order-1 lg:order-2">
+            {/* =========================
+      BACKGROUND GLOBE LAYER
+  ========================== */}
+            <div className="absolute inset-0 flex items-center justify-center -z-10">
+              <motion.div
+                animate={{ scale: [1, 1.04, 1] }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="relative w-full aspect-square max-w-[760px]"
+              >
                 <Image
                   src="/globe.png"
                   alt="Global translation network connecting English, French, and Dutch"
                   fill
+                  sizes="(max-width: 640px) 420px,
+               (max-width: 768px) 520px,
+               (max-width: 1024px) 600px,
+               (max-width: 1280px) 680px,
+               760px"
                   className="object-contain"
                   priority
                 />
-              </div>
-              <div className="absolute inset-0 -z-10 flex items-center justify-center">
-                <div className="w-[75%] h-[75%] rounded-full bg-[#023779]/5 blur-3xl" />
-              </div>
-            </motion.div>
 
-            {/* Floating Cards */}
-            {FLOATING_CARDS.map((card, index) => {
-              const Icon = card.icon;
-              return (
+                {/* Glow */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-[75%] h-[75%] rounded-full bg-[#023779]/5 blur-3xl" />
+                </div>
                 <motion.div
-                  key={index}
-                  initial={{
-                    opacity: 0,
-                    scale: 0.8,
-                    x: card.x * 0.5,
-                    y: card.y * 0.5,
-                  }}
-                  animate={{ opacity: 1, scale: 1, x: card.x, y: card.y }}
-                  transition={{
-                    duration: 0.8,
-                    delay: 0.6 + card.delay,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="absolute hidden lg:block"
-                  style={{ left: "50%", top: "50%" }}
-                >
-                  <motion.div
-                    animate={{ y: [0, -8, 0] }}
-                    transition={{
-                      duration: 4 + index * 0.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: index * 0.3,
-                    }}
-                    className="flex items-center gap-3 px-4 py-3 bg-white rounded-xl border border-neutral-100 shadow-lg shadow-neutral-900/5 hover:shadow-xl hover:shadow-neutral-900/10 transition-shadow duration-300"
-                  >
-                    <div
-                      className="flex items-center justify-center w-9 h-9 rounded-lg"
-                      style={{ backgroundColor: `${card.color}10` }}
-                    >
-                      <Icon
-                        className="w-4.5 h-4.5"
-                        style={{ color: card.color }}
-                        strokeWidth={1.5}
-                      />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-neutral-900 leading-tight">
-                        {card.label}
-                      </p>
-                      <p className="text-xs text-neutral-400 leading-tight mt-0.5">
-                        {card.sublabel}
-                      </p>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              );
-            })}
-
-            {/* Language Pills */}
-            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2, duration: 0.6 }}
-              className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex gap-2"
+              className="absolute bottom-[4%] left-1/2 -translate-x-1/2 flex gap-2"
             >
               {["English", "Français", "Nederlands"].map((langLabel, i) => (
                 <motion.span
                   key={langLabel}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.4 + i * 0.1 }}
                   className="px-3 py-1.5 text-xs font-medium bg-white/80 backdrop-blur-sm border border-neutral-200/60 rounded-full text-neutral-600 shadow-sm"
@@ -465,6 +420,77 @@ export default function Hero({ lang = "en" }: HeroProps) {
                 </motion.span>
               ))}
             </motion.div>
+              </motion.div>
+            </div>
+
+            {/* =========================
+      FLOATING CARDS LAYER
+  ========================== */}
+            <div className="absolute inset-0 hidden lg:block">
+              {FLOATING_CARDS.map((card, index) => {
+                const Icon = card.icon;
+
+                return (
+                  <motion.div
+                    key={index}
+                    className="absolute left-1/2 top-1/2"
+                    style={{
+                      x: card.x,
+                      y: card.y,
+                    }}
+                    initial={{
+                      opacity: 0,
+                      scale: 0.8,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      scale: 1,
+                    }}
+                    transition={{
+                      duration: 0.8,
+                      delay: 0.6 + card.delay,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  >
+                    <motion.div
+                      animate={{ y: [0, -6, 0] }}
+                      transition={{
+                        duration: 4 + index * 0.4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: index * 0.2,
+                      }}
+                      className="flex items-center gap-3 px-4 py-3 bg-white rounded-xl border border-neutral-100 shadow-lg shadow-neutral-900/5 hover:shadow-xl transition-shadow duration-300"
+                    >
+                      <div
+                        className="flex items-center justify-center w-9 h-9 rounded-lg"
+                        style={{ backgroundColor: `${card.color}10` }}
+                      >
+                        <Icon
+                          className="w-4 h-4"
+                          style={{ color: card.color }}
+                          strokeWidth={1.5}
+                        />
+                      </div>
+
+                      <div>
+                        <p className="text-sm font-semibold text-neutral-900 leading-tight">
+                          {card.label}
+                        </p>
+                        <p className="text-xs text-neutral-400 leading-tight mt-0.5">
+                          {card.sublabel}
+                        </p>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* =========================
+      LANGUAGE PILLS LAYER
+  ========================== */}
+            
           </div>
         </div>
       </motion.div>
