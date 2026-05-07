@@ -6,6 +6,7 @@ import WhyKastanorgaSection from "./sections/WhyKastanorgaSection";
 import ProcessSection from "./sections/ProcessSection";
 import LanguageExpertiseSection from "./sections/LanguageExpertiseSection";
 import TestimonialsSection from "./sections/TestimonialsSection";
+import PhilosophyBanner from "./sections/PhilosophyBanner";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <ProcessSection />
         <LanguageExpertiseSection />
         <TestimonialsSection />
+        <PhilosophyBanner/>
       </main>
     </div>
   );
