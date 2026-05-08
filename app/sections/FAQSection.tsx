@@ -108,7 +108,7 @@ export default function FAQSection() {
             {faqs.map((faq) => {
               const Icon = faq.icon;
               return (
-                <motion.div key={faq.id} variants={itemVariants}>
+                <motion.div key={faq.id} variants={itemVariants} layout>
                   <AccordionItem
                     value={faq.id}
                     className="rounded-2xl border border-slate-200 bg-white px-6 py-1 shadow-sm transition-all duration-300 hover:border-[#023779]/20 hover:shadow-md data-[state=open]:border-[#023779]/30 data-[state=open]:shadow-md md:px-8"
