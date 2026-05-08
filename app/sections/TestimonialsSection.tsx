@@ -19,7 +19,7 @@ const fadeInUp = (delay = 0) => ({
     transition: {
       duration: 0.7,
       delay,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: [0.25, 0.46, 0.45, 0.94] as const,
     },
   },
 });
@@ -43,7 +43,7 @@ const scaleIn = (delay = 0) => ({
     transition: {
       duration: 0.6,
       delay,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: [0.25, 0.46, 0.45, 0.94] as const,
     },
   },
 });
@@ -236,7 +236,7 @@ export default function TestimonialsSection() {
                 key={activeIndex}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+                transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as const }}
               >
                 {/* Stars */}
                 <div className="mb-6 flex gap-1">
