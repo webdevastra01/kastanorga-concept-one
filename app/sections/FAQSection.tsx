@@ -65,7 +65,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: [0.22, 1, 0.36, 1] as const,
     },
   },
 };
@@ -76,14 +76,13 @@ export default function FAQSection() {
       id="faq"
       className="relative w-full bg-[#fafafa] py-24 md:py-32 lg:py-40"
     >
-
       <div className="mx-auto max-w-4xl px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="mb-16 text-center md:mb-20"
         >
           <span className="mb-4 inline-block text-sm font-semibold uppercase tracking-widest text-[#cd2927]">
@@ -112,9 +111,9 @@ export default function FAQSection() {
                 <motion.div key={faq.id} variants={itemVariants}>
                   <AccordionItem
                     value={faq.id}
-                    className="group rounded-2xl border border-slate-200 bg-white px-6 py-1 shadow-sm transition-all duration-300 hover:border-[#023779]/20 hover:shadow-md data-[state=open]:border-[#023779]/30 data-[state=open]:shadow-md md:px-8"
+                    className="rounded-2xl border border-slate-200 bg-white px-6 py-1 shadow-sm transition-all duration-300 hover:border-[#023779]/20 hover:shadow-md data-[state=open]:border-[#023779]/30 data-[state=open]:shadow-md md:px-8"
                   >
-                    <AccordionTrigger className="py-6 text-left hover:no-underline md:py-7">
+                    <AccordionTrigger className="group py-6 text-left hover:no-underline md:py-7">
                       <div className="flex items-center gap-4">
                         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#023779]/5 text-[#023779] transition-colors duration-300 group-hover:bg-[#023779]/10 group-data-[state=open]:bg-[#023779] group-data-[state=open]:text-white">
                           <Icon className="h-5 w-5" strokeWidth={1.5} />
