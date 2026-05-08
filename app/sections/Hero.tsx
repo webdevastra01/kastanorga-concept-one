@@ -220,7 +220,7 @@ export default function Hero({ lang = "en" }: HeroProps) {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
     },
   };
 
@@ -289,7 +289,7 @@ export default function Hero({ lang = "en" }: HeroProps) {
               transition={{
                 duration: 0.7,
                 delay: 0.2,
-                ease: [0.22, 1, 0.36, 1],
+                ease: [0.22, 1, 0.36, 1] as const,
               }}
               className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold tracking-tight text-neutral-900 leading-[1.08]"
             >
@@ -302,7 +302,7 @@ export default function Hero({ lang = "en" }: HeroProps) {
                   transition={{
                     duration: 0.8,
                     delay: 0.8,
-                    ease: [0.22, 1, 0.36, 1],
+                    ease: [0.22, 1, 0.36, 1] as const,
                   }}
                   className="absolute bottom-1 left-0 right-0 h-3 bg-[#cd2927]/10 origin-left rounded-sm"
                 />
@@ -317,7 +317,7 @@ export default function Hero({ lang = "en" }: HeroProps) {
                   transition={{
                     duration: 0.8,
                     delay: 1,
-                    ease: [0.22, 1, 0.36, 1],
+                    ease: [0.22, 1, 0.36, 1] as const,
                   }}
                   className="absolute bottom-1 left-0 right-0 h-3 bg-[#023779]/10 origin-left rounded-sm"
                 />
@@ -458,7 +458,7 @@ export default function Hero({ lang = "en" }: HeroProps) {
                     transition={{
                       duration: 0.8,
                       delay: 0.6 + card.delay,
-                      ease: [0.22, 1, 0.36, 1],
+                      ease: [0.22, 1, 0.36, 1] as const,
                     }}
                   >
                     <motion.div
